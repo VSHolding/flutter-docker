@@ -20,7 +20,13 @@ RUN flutter config --enable-web
 
 # Copy files to container and build
 RUN flutter create myapp
+COPY . /myapp/
 WORKDIR /myapp/
-RUN ls
 
-CMD [ "flutter", "--version"]
+# Record the exposed port
+EXPOSE 1200
+
+# make server startup script executable and start the web server
+RUN ["chmod", "+x", "/myapp/server.sh"]
+
+ENTRYPOINT [ "/myapp/server.sh"]
