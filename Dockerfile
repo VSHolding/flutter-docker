@@ -32,6 +32,6 @@ WORKDIR /myapp/
 
 # make server startup script executable and start the web server
 RUN ["chmod", "+x", "/myapp/server.sh"]
-RUN flutter run -d chrome --web-port 5555
 
-CMD [""]
+
+CMD ["./server.sh"]
